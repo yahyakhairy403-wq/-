@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مطعم كبدة الاسكندراني - الأكثر مبيعاً</title>
+    <!-- Google Fonts: Cairo -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            /* Dark Theme (الوضع الداكن - الافتراضي) */
+            --bg-color: #121418;
+            --card-bg: #1c1f26;
+            --text-primary: #f3f4f6;
+            --text-secondary: #9ca3af;
+            --accent-color: #ff9800;
+            --accent-hover: #e68a00;
+            --accent-glow: rgba(255, 152, 0, 0.25);
+            --nav-bg: rgba(28, 31, 38, 0.95);
+            --border-color: #2e333d;
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            --price-new: #22c55e;
+        }
+
+        [data-theme="light"] {
+            /* Light Theme (الوضع المشرق) */
+            --bg-color: #f8fafc;
+            --card-bg: #ffffff;
+            --text-primary: #0f172a;
+            --text-secondary: #475569;
+            --accent-color: #ea580c;
+            --accent-hover: #c2410c;
+            --accent-glow: rgba(234, 88, 12, 0.15);
+            --nav-bg: rgba(255, 255, 255, 0.95);
+            --border-color: #e2e8f0;
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            --price-new: #16a34a;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        body {
+            font-family: 'Cairo', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Header & Navbar Navigation */
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background-color: var(--nav-bg);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border-color);
+            box-shadow: var(--shadow);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: var(--accent-color);
+            text-decoration: none;
+        }
+
+        .logo i {
+            font-size: 1.8rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 0.75rem;
+            list-style: none;
+            flex-wrap: wrap;
+        }
+
+        .nav-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.65rem 1.25rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.95rem;
+            color: var(--text-primary);
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+        }
+
+        .nav-btn:hover, .nav-btn.active {
+            background-color: var(--accent-color);
+            color: #ffffff;
+            border-color: var(--accent-color);
+            box-shadow: 0 4px 15px var(--accent-glow);
+            transform: translateY(-2px);
+        }
+
+        /* Theme Toggle Button */
+        .theme-toggle-btn {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            color: var(--accent-color);
+            padding: 0.65rem 1.25rem;
+            border-radius: 50px;
+            cursor: pointer;
+            font-family: inherit;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            transition: all 0.3s ease;
+        }
+
+        .theme-toggle-btn:hover {
+            transform: scale(1.05);
+            border-color: var(--accent-color);
+            box-shadow: 0 4px 15px var(--accent-glow);
+        }
+
+        /* Main Container */
+        main {
+            flex: 1;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2.5rem 1.5rem;
+            width: 100%;
+        }
+
+        /* Page Banner Header */
+        .page-header {
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .page-title {
+            font-size: 2.3rem;
+            font-weight: 800;
+            color: var(--accent-color);
+            margin-bottom: 0.5rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .page-subtitle {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            font-weight: 600;
+        }
+
+        /* Navigation / Back Button */
+        .back-nav-wrapper {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .btn-back {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            background-color: var(--card-bg);
+            color: var(--accent-color);
+            border: 2px solid var(--accent-color);
+            padding: 0.75rem 1.75rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 800;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow);
+        }
+
+        .btn-back:hover {
+            background-color: var(--accent-color);
+            color: #ffffff;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px var(--accent-glow);
+        }
+
+        /* Cards Grid Layout: 2 items per row */
+        .bestsellers-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+        }
+
+        /* Food Card Component */
+        .food-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        .food-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--accent-color);
+            box-shadow: 0 15px 35px var(--accent-glow);
+        }
+
+        .food-image-container {
+            position: relative;
+            width: 100%;
+            height: 250px;
+            overflow: hidden;
+            background-color: #2a2e39;
+        }
+
+        .food-image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .food-card:hover .food-image-container img {
+            transform: scale(1.08);
+        }
+
+        .food-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: linear-gradient(135deg, #ff9800, #e65100);
+            color: #ffffff;
+            padding: 0.4rem 1rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 800;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .food-content {
+            padding: 1.75rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            flex: 1;
+            gap: 1.25rem;
+        }
+
+        .food-title {
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: var(--text-primary);
+            line-height: 1.4;
+        }
+
+        /* Pricing Section inside Card */
+        .price-section {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background-color: rgba(0, 0, 0, 0.15);
+            padding: 1rem 1.25rem;
+            border-radius: 16px;
+            border: 1px solid var(--border-color);
+            flex-wrap: wrap;
+            gap: 0.75rem;
+        }
+
+        .price-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(34, 197, 94, 0.12);
+            padding: 0.4rem 1rem;
+            border-radius: 10px;
+            border: 1px solid rgba(34, 197, 94, 0.3);
+        }
+
+        .price-label {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--text-secondary);
+        }
+
+        .price-amount {
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: var(--price-new);
+        }
+
+        .order-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            background-color: var(--accent-color);
+            color: #ffffff;
+            border: none;
+            padding: 0.85rem;
+            border-radius: 14px;
+            font-family: inherit;
+            font-weight: 800;
+            font-size: 1rem;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .order-btn:hover {
+            background-color: var(--accent-hover);
+            box-shadow: 0 6px 18px var(--accent-glow);
+            transform: translateY(-2px);
+        }
+
+        /* Bottom Return Button Container */
+        .bottom-actions {
+            margin-top: 3.5rem;
+            text-align: center;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--card-bg);
+            border-top: 1px solid var(--border-color);
+            padding: 2rem 1.5rem;
+            text-align: center;
+            color: var(--text-secondary);
+            margin-top: 3rem;
+        }
+
+        footer p {
+            font-size: 0.95rem;
+            font-weight: 600;
+        }
+
+        /* Responsive Design: 1 card per row on mobile */
+        @media (max-width: 850px) {
+            .bestsellers-grid {
+                grid-template-columns: 1fr;
+            }
+            .page-title {
+                font-size: 1.8rem;
+            }
+            .food-image-container {
+                height: 210px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header & Navigation -->
+    <header>
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <i class="fa-solid fa-utensils"></i>
+                <span>كبدة الاسكندراني</span>
+            </a>
+
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="index.html" class="nav-btn"><i class="fa-solid fa-house"></i> الرئيسية</a></li>
+                    <li><a href="offers.html" class="nav-btn"><i class="fa-solid fa-fire"></i> العروض الرائجة</a></li>
+                    <li><a href="discounts.html" class="nav-btn"><i class="fa-solid fa-tags"></i> الخصومات</a></li>
+                    <li><a href="bestsellers.html" class="nav-btn active"><i class="fa-solid fa-crown"></i> الأكثر مبيعاً</a></li>
+                </ul>
+            </nav>
+
+            <!-- Theme Toggle Button -->
+            <button class="theme-toggle-btn" id="themeToggleBtn" onclick="toggleTheme()" aria-label="تبديل الوضعية">
+                <i class="fa-solid fa-sun" id="themeIcon"></i>
+                <span id="themeText">الوضع المشرق</span>
+            </button>
+        </div>
+    </header>
+
+    <main>
+        <!-- Top Back Navigation -->
+        <div class="back-nav-wrapper">
+            <a href="index.html" class="btn-back">
+                <i class="fa-solid fa-arrow-right"></i> العودة للصفحة الرئيسية
+            </a>
+            <span style="font-weight: 700; color: var(--text-secondary);">
+                <i class="fa-solid fa-crown" style="color: var(--accent-color);"></i> الأصناف الأكثر إقبالاً وطلباً لدى زبائننا!
+            </span>
+        </div>
+
+        <!-- Page Title Header -->
+        <div class="page-header">
+            <h1 class="page-title"><i class="fa-solid fa-crown"></i> الأكثر مبيعاً</h1>
+            <p class="page-subtitle">تذوق أشهى الأطباق المفضلة والأعلى طلباً في مطعم كبدة الاسكندراني</p>
+        </div>
+
+        <!-- Bestsellers Grid Container (8 Cards) -->
+        <div class="bestsellers-grid">
+
+            <!-- Card 1: بيتزا حجم صغير -->
+            <div class="food-card">
+                <div class="food-image-container">
+                    <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=800&q=80" alt="بيتزا حجم صغير">
+                    <span class="food-badge"><i class="fa-solid fa-crown"></i> الأكثر طلباً</span>
+                </div>
+                <div class="food-content">
+                    <h2 class="food-title">بيتزا حجم صغير</h2>
+                    
+                    <div class="price-section">
+                        <div class="price-wrapper">
+                            <span class="price-label">السعر:</span>
+                            <span class="price-amount">70 ج.م</span>
+                        </div>
+                    </div>
+
+                    <a href="https://wa.me/201100000000?text=أريد%20طلب:%20بيتزا%20حجم%20صغير" target="_blank" class="order-btn">
+                        <i class="fa-brands fa-whatsapp"></i> اطلب الآن
+                    </a>
+                </div>
+            </div>
+
+            <!-- Card 2: رز بسمتى مع لحم بقرى -->
+            <div class="food-card">
+                <div class="food-image-container">
+                    <img src="https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=800&q=80" alt="رز بسمتى مع لحم بقرى">
+                    <span class="food-badge"><i class="fa-solid fa-star"></i> المميز</span>
+                </div>
+                <div class="food-content">
+                    <h2 class="food-title">رز بسمتى مع لحم بقرى</h2>
+                    
+                    <div class="price-section">
+                        <div class="price-wrapper">
+                            <span class="price-label">السعر:</span>
+                            <span class="price-amount">140 ج.م</span>
+                        </div>
+                    </div>
+
+                    <a href="https://wa.me/201100000000?text=أريد%20طلب:%20رز%20بسمتى%20مع%20لحم%20بقرى" target="_blank" class="order-btn">
+                        <i class="fa-brands fa-whatsapp"></i> اطلب الآن
+                    </a>
+                </div>
+            </div>
+
+            <!-- Card 3: وجبة هامبرغر فراخ -->
+            <div class="food-card">
+                <div class="food-image-container">
+                    <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=800&q=80" alt="وجبة هامبرغر فراخ">
+                    <span class="food-badge"><i class="fa-solid fa-fire"></i> شهي وسريع</span>
+                </div>
+                <div class="food-content">
+                    <h2 class="food-title">وجبة هامبرغر فراخ</h2>
+                    
+                    <div class="price-section">
+                        <div class="price-wrapper">
+                            <span class="price-label">السعر:</span>
+                            <span class="price-amount">60 ج.م</span>
+                        </div>
+                    </div>
+
+                    <a href="https://wa.me/201100000000?text=أريد%20طلب:%20وجبة%20هامبرغر%20فراخ" target="_blank" class="order-btn">
+                        <i class="fa-brands fa-whatsapp"></i> اطلب الآن
+                    </a>
+                </div>
+            </div>
+
+            <!-- Card 4: كفته مع رز بسمتى -->
+            <div class="food-card">
+                <div class="food-image-container">
+                    <img src="https://images.unsplash.com/photo-1529692236671-f1f6cf9683ba?auto=format&fit=crop&w=800&q=80" alt="كفته مع رز بسمتى">
+                    <span class="food-badge"><i class="fa-solid fa-thumbs-up"></i> اختيار الزبائن</span>
+                </div>
+                <div class="food-content">
+                    <h2 class="food-title">كفته مع رز بسمتى</h2>
+                    
+                    <div class="price-section">
+                        <div class="price-wrapper">
+                            <span class="price-label">السعر:</span>
+                            <span class="price-amount">120 ج.م</span>
+                        </div>
+                    </div>
+
+                    <a href="https://wa.me/201100000000?text=أريد%20طلب:%20كفته%20مع%20رز%20بسمتى" target="_blank" class="order-btn">
+                        <i class="fa-brands fa-whatsapp"></i> اطلب الآن
+                    </a>
+                </div>
+            </div>
+
+            <!-- Card 5: كريب باللحمه الضانى -->
+            <div class="food-card">
+                <div class="food-image-container">
+                    <img src="https://images.unsplash.com/photo-1565299585323-38d6b0865b47?auto=format&fit=crop&w=800&q=80" alt="كريب باللحمه الضانى">
+                    <span class="food-badge"><i class="fa-solid fa-utensils"></i> طعم فريد</span>
+                </div>
+                <div class="food-content">
+                    <h2 class="food-title">كريب باللحمه الضانى</h2>
+                    
+                    <div class="price-section">
+                        <div class="price-wrapper">
+                            <span class="price-label">السعر:</span>
+                            <span class="price-amount">90 ج.م</span>
+                        </div>
+                    </div>
+
+                    <a href="https://wa.me/201100000000?text=أريد%20طلب:%20كريب%20باللحمه%20الضانى" target="_blank" class="order-btn">
+                        <i class="fa-brands fa-whatsapp"></i> اطلب الآن
+                    </a>
+                </div>
+            </div>
+
+            <!-- Card 6: وجبة كوارع -->
+            <div class="food-card">
+                <div class="food-image-container">
+                    <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=800&q=80" alt="وجبة كوارع">
+                    <span class="food-badge"><i class="fa-solid fa-fire-burner"></i> بلدي أصيل</span>
+                </div>
+                <div class="food-content">
+                    <h2 class="food-title">وجبة كوارع</h2>
+                    
+                    <div class="price-section">
+                        <div class="price-wrapper">
+                            <span class="price-label">السعر:</span>
+                            <span class="price-amount">110 ج.م</span>
+                        </div>
+                    </div>
+
+                    <a href="https://wa.me/201100000000?text=أريد%20طلب:%20وجبة%20كوارع" target="_blank" class="order-btn">
+                        <i class="fa-brands fa-whatsapp"></i> اطلب الآن
+                    </a>
+                </div>
+            </div>
+
+            <!-- Card 7: فراخ ماندى مع رز معمر -->
+            <div class="food-card">
+                <div class="food-image-container">
+                    <img src="https://images.unsplash.com/photo-1598515214211-89d3c73ae83b?auto=format&fit=crop&w=800&q=80" alt="فراخ ماندى مع رز معمر">
+                    <span class="food-badge"><i class="fa-solid fa-crown"></i> المفضل عائلياً</span>
+                </div>
+                <div class="food-content">
+                    <h2 class="food-title">فراخ ماندى مع رز معمر</h2>
+                    
+                    <div class="price-section">
+                        <div class="price-wrapper">
+                            <span class="price-label">السعر:</span>
+                            <span class="price-amount">140 ج.م</span>
+                        </div>
+                    </div>
+
+                    <a href="https://wa.me/201100000000?text=أريد%20طلب:%20فراخ%20ماندى%20مع%20رز%20معمر" target="_blank" class="order-btn">
+                        <i class="fa-brands fa-whatsapp"></i> اطلب الآن
+                    </a>
+                </div>
+            </div>
+
+            <!-- Card 8: تشكيلة لحوم مختلفه -->
+            <div class="food-card">
+                <div class="food-image-container">
+                    <img src="https://images.unsplash.com/photo-1509722747041-616f39b57569?auto=format&fit=crop&w=800&q=80" alt="تشكيلة لحوم مختلفه">
+                    <span class="food-badge"><i class="fa-solid fa-layer-group"></i> الوجبة الضخمة</span>
+                </div>
+                <div class="food-content">
+                    <h2 class="food-title">تشكيلة لحوم مختلفه</h2>
+                    
+                    <div class="price-section">
+                        <div class="price-wrapper">
+                            <span class="price-label">السعر:</span>
+                            <span class="price-amount">290 ج.م</span>
+                        </div>
+                    </div>
+
+                    <a href="https://wa.me/201100000000?text=أريد%20طلب:%20تشكيلة%20لحوم%20مختلفه" target="_blank" class="order-btn">
+                        <i class="fa-brands fa-whatsapp"></i> اطلب الآن
+                    </a>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Bottom Return Button -->
+        <div class="bottom-actions">
+            <a href="index.html" class="btn-back">
+                <i class="fa-solid fa-house"></i> العودة للصفحة الرئيسية
+            </a>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>جميع الحقوق محفوظة &copy; 2026 - مطعم كبدة الاسكندراني</p>
+    </footer>
+
+    <!-- JavaScript for Theme Persistence via localStorage -->
+    <script>
+        // Load theme from localStorage (synced with index.html) or default to 'dark'
+        function initTheme() {
+            const savedTheme = localStorage.getItem('theme') || 'dark';
+            document.documentElement.setAttribute('data-theme', savedTheme);
+            updateThemeUI(savedTheme);
+        }
+
+        function toggleTheme() {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            
+            document.documentElement.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            updateThemeUI(newTheme);
+        }
+
+        function updateThemeUI(theme) {
+            const themeIcon = document.getElementById('themeIcon');
+            const themeText = document.getElementById('themeText');
+            
+            if (themeIcon && themeText) {
+                if (theme === 'light') {
+                    themeIcon.className = 'fa-solid fa-moon';
+                    themeText.textContent = 'الوضع الداكن';
+                } else {
+                    themeIcon.className = 'fa-solid fa-sun';
+                    themeText.textContent = 'الوضع المشرق';
+                }
+            }
+        }
+
+        // Initialize theme on page load
+        initTheme();
+    </script>
+</body>
+</html>

@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مطعم كبدة الاسكندراني - صفحة الخصومات</title>
+    <!-- Google Fonts: Cairo -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            /* Dark Theme (الوضع الداكن - الافتراضي) */
+            --bg-color: #121418;
+            --card-bg: #1c1f26;
+            --text-primary: #f3f4f6;
+            --text-secondary: #9ca3af;
+            --accent-color: #ff9800;
+            --accent-hover: #e68a00;
+            --accent-glow: rgba(255, 152, 0, 0.25);
+            --nav-bg: rgba(28, 31, 38, 0.95);
+            --border-color: #2e333d;
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            --price-old: #ef4444;
+            --price-new: #22c55e;
+        }
+
+        [data-theme="light"] {
+            /* Light Theme (الوضع المشرق) */
+            --bg-color: #f8fafc;
+            --card-bg: #ffffff;
+            --text-primary: #0f172a;
+            --text-secondary: #475569;
+            --accent-color: #ea580c;
+            --accent-hover: #c2410c;
+            --accent-glow: rgba(234, 88, 12, 0.15);
+            --nav-bg: rgba(255, 255, 255, 0.95);
+            --border-color: #e2e8f0;
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            --price-old: #dc2626;
+            --price-new: #16a34a;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        body {
+            font-family: 'Cairo', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Header & Navbar Navigation */
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background-color: var(--nav-bg);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border-color);
+            box-shadow: var(--shadow);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: var(--accent-color);
+            text-decoration: none;
+        }
+
+        .logo i {
+            font-size: 1.8rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 0.75rem;
+            list-style: none;
+            flex-wrap: wrap;
+        }
+
+        .nav-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.65rem 1.25rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.95rem;
+            color: var(--text-primary);
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+        }
+
+        .nav-btn:hover, .nav-btn.active {
+            background-color: var(--accent-color);
+            color: #ffffff;
+            border-color: var(--accent-color);
+            box-shadow: 0 4px 15px var(--accent-glow);
+            transform: translateY(-2px);
+        }
+
+        /* Theme Toggle Button */
+        .theme-toggle-btn {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            color: var(--accent-color);
+            padding: 0.65rem 1.25rem;
+            border-radius: 50px;
+            cursor: pointer;
+            font-family: inherit;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            transition: all 0.3s ease;
+        }
+
+        .theme-toggle-btn:hover {
+            transform: scale(1.05);
+            border-color: var(--accent-color);
+            box-shadow: 0 4px 15px var(--accent-glow);
+        }
+
+        /* Main Container */
+        main {
+            flex: 1;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2.5rem 1.5rem;
+            width: 100%;
+        }
+
+        /* Page Banner Header */
+        .page-header {
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .page-title {
+            font-size: 2.3rem;
+            font-weight: 800;
+            color: var(--accent-color);
+            margin-bottom: 0.5rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .page-subtitle {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            font-weight: 600;
+        }
+
+        /* Navigation / Back Button */
+        .back-nav-wrapper {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .btn-back {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            background-color: var(--card-bg);
+            color: var(--accent-color);
+            border: 2px solid var(--accent-color);
+            padding: 0.75rem 1.75rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 800;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow);
+        }
+
+        .btn-back:hover {
+            background-color: var(--accent-color);
+            color: #ffffff;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px var(--accent-glow);
+        }
+
+        /* Discounts Grid Layout: 2 items per row */
+        .discounts-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+        }
+
+        /* Discount Card Component */
+        .discount-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        .discount-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--accent-color);
+            box-shadow: 0 15px 35px var(--accent-glow);
+        }
+
+        .discount-image-container {
+            position: relative;
+            width: 100%;
+            height: 250px;
+            overflow: hidden;
+            background-color: #2a2e39;
+        }
+
+        .discount-image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .discount-card:hover .discount-image-container img {
+            transform: scale(1.08);
+        }
+
+        .discount-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: linear-gradient(135deg, #ef4444, #dc2626);
+            color: #ffffff;
+            padding: 0.4rem 1rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 800;
+            box-shadow: 0 4px 12px rgba(239, 68, 68, 0.4);
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .discount-content {
+            padding: 1.75rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            flex: 1;
+            gap: 1.25rem;
+        }
+
+        .discount-title {
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: var(--text-primary);
+            line-height: 1.4;
+        }
+
+        /* Pricing Section inside Card */
+        .price-container {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            background-color: rgba(0, 0, 0, 0.15);
+            padding: 1.25rem;
+            border-radius: 16px;
+            border: 1px solid var(--border-color);
+        }
+
+        /* Old Price with Red Cross */
+        .old-price-box {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            background: rgba(239, 68, 68, 0.1);
+            padding: 0.5rem 1rem;
+            border-radius: 10px;
+            border: 1px solid rgba(239, 68, 68, 0.25);
+            width: fit-content;
+        }
+
+        .old-price-label {
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--text-secondary);
+        }
+
+        .old-price-value {
+            font-size: 1.15rem;
+            font-weight: 800;
+            color: var(--price-old);
+            text-decoration: line-through;
+        }
+
+        .cross-mark {
+            color: var(--price-old);
+            font-size: 1.2rem;
+            font-weight: 900;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* New Price Box */
+        .new-price-box {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            background: rgba(34, 197, 94, 0.12);
+            padding: 0.6rem 1.1rem;
+            border-radius: 10px;
+            border: 1px solid rgba(34, 197, 94, 0.3);
+            width: fit-content;
+        }
+
+        .new-price-label {
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--text-secondary);
+        }
+
+        .new-price-value {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--price-new);
+        }
+
+        .order-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            background-color: var(--accent-color);
+            color: #ffffff;
+            border: none;
+            padding: 0.85rem;
+            border-radius: 14px;
+            font-family: inherit;
+            font-weight: 800;
+            font-size: 1rem;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .order-btn:hover {
+            background-color: var(--accent-hover);
+            box-shadow: 0 6px 18px var(--accent-glow);
+            transform: translateY(-2px);
+        }
+
+        /* Bottom Return Button Container */
+        .bottom-actions {
+            margin-top: 3.5rem;
+            text-align: center;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--card-bg);
+            border-top: 1px solid var(--border-color);
+            padding: 2rem 1.5rem;
+            text-align: center;
+            color: var(--text-secondary);
+            margin-top: 3rem;
+        }
+
+        footer p {
+            font-size: 0.95rem;
+            font-weight: 600;
+        }
+
+        /* Responsive Design: 1 card per row on mobile */
+        @media (max-width: 850px) {
+            .discounts-grid {
+                grid-template-columns: 1fr;
+            }
+            .page-title {
+                font-size: 1.8rem;
+            }
+            .discount-image-container {
+                height: 210px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header & Navigation -->
+    <header>
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <i class="fa-solid fa-utensils"></i>
+                <span>كبدة الاسكندراني</span>
+            </a>
+
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="index.html" class="nav-btn"><i class="fa-solid fa-house"></i> الرئيسية</a></li>
+                    <li><a href="offers.html" class="nav-btn"><i class="fa-solid fa-fire"></i> العروض الرائجة</a></li>
+                    <li><a href="discounts.html" class="nav-btn active"><i class="fa-solid fa-tags"></i> الخصومات</a></li>
+                    <li><a href="bestsellers.html" class="nav-btn"><i class="fa-solid fa-crown"></i> الأكثر مبيعاً</a></li>
+                </ul>
+            </nav>
+
+            <!-- Theme Toggle Button -->
+            <button class="theme-toggle-btn" id="themeToggleBtn" onclick="toggleTheme()" aria-label="تبديل الوضعية">
+                <i class="fa-solid fa-sun" id="themeIcon"></i>
+                <span id="themeText">الوضع المشرق</span>
+            </button>
+        </div>
+    </header>
+
+    <main>
+        <!-- Top Back Navigation -->
+        <div class="back-nav-wrapper">
+            <a href="index.html" class="btn-back">
+                <i class="fa-solid fa-arrow-right"></i> العودة للصفحة الرئيسية
+            </a>
+            <span style="font-weight: 700; color: var(--text-secondary);">
+                <i class="fa-solid fa-percent" style="color: var(--accent-color);"></i> خصومات خاصة ومباشرة لفترة محدودة!
+            </span>
+        </div>
+
+        <!-- Page Title Header -->
+        <div class="page-header">
+            <h1 class="page-title"><i class="fa-solid fa-tags"></i> أقوى الخصومات والتخفيضات</h1>
+            <p class="page-subtitle">استمتع بأشهى المأكولات والوجبات بأسعار مخفضة حصرياً من مطعم كبدة الاسكندراني</p>
+        </div>
+
+        <!-- Discounts Grid Container (6 Cards) -->
+        <div class="discounts-grid">
+
+            <!-- Card 1: وجبة دجاج وأرز -->
+            <div class="discount-card">
+                <div class="discount-image-container">
+                    <img src="https://images.unsplash.com/photo-1598515214211-89d3c73ae83b?auto=format&fit=crop&w=800&q=80" alt="وجبة دجاج وأرز" onerror="this.src='https://images.unsplash.com/photo-1512058564366-18510be2db19?auto=format&fit=crop&w=800&q=80'">
+                    <span class="discount-badge"><i class="fa-solid fa-percent"></i> خصم 20%</span>
+                </div>
+                <div class="discount-content">
+                    <h2 class="discount-title">وجبة دجاج وأرز</h2>
+                    
+                    <div class="price-container">
+                        <!-- Old Price with Cross Mark -->
+                        <div class="old-price-box">
+                            <span class="old-price-label">السعر السابق:</span>
+                            <span class="old-price-value">250 ج.م</span>
+                            <span class="cross-mark"><i class="fa-solid fa-xmark"></i></span>
+                        </div>
+                        <!-- New Price -->
+                        <div class="new-price-box">
+                            <span class="new-price-label">السعر الآن:</span>
+                            <span class="new-price-value">200 ج.م</span>
+                        </div>
+                    </div>
+
+                    <a href="https://wa.me/201100000000?text=أريد%20طلب%20خصم:%20وجبة%20دجاج%20وأرز" target="_blank" class="order-btn">
+                        <i class="fa-brands fa-whatsapp"></i> اطلب العرض الآن
+                    </a>
+                </div>
+            </div>
+
+            <!-- Card 2: وجبة فراخ بانيه مع الرز البسمتى -->
+            <div class="discount-card">
+                <div class="discount-image-container">
+                    <img src="https://images.unsplash.com/photo-1562967914-608f82629710?auto=format&fit=crop&w=800&q=80" alt="وجبة فراخ بانيه مع الرز البسمتى" onerror="this.src='https://images.unsplash.com/photo-1626082927389-6cd097cdc6ec?auto=format&fit=crop&w=800&q=80'">
+                    <span class="discount-badge"><i class="fa-solid fa-percent"></i> خصم مميز</span>
+                </div>
+                <div class="discount-content">
+                    <h2 class="discount-title">وجبة فراخ بانيه مع الرز البسمتى</h2>
+                    
+                    <div class="price-container">
+                        <!-- Old Price with Cross Mark -->
+                        <div class="old-price-box">
+                            <span class="old-price-label">السعر السابق:</span>
+                            <span class="old-price-value">280 ج.م</span>
+                            <span class="cross-mark"><i class="fa-solid fa-xmark"></i></span>
+                        </div>
+                        <!-- New Price -->
+                        <div class="new-price-box">
+                            <span class="new-price-label">السعر الآن:</span>
+                            <span class="new-price-value">240 ج.م</span>
+                        </div>
+                    </div>
+
+                    <a href="https://wa.me/201100000000?text=أريد%20طلب%20خصم:%20وجبة%20فراخ%20بانيه%20مع%20الرز%20البسمتى" target="_blank" class="order-btn">
+                        <i class="fa-brands fa-whatsapp"></i> اطلب العرض الآن
+                    </a>
+                </div>
+            </div>
+
+            <!-- Card 3: وجبة كشرى مع اللحم المفروم -->
+            <div class="discount-card">
+                <div class="discount-image-container">
+                    <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=800&q=80" alt="وجبة كشرى مع اللحم المفروم" onerror="this.src='https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=800&q=80'">
+                    <span class="discount-badge"><i class="fa-solid fa-bolt"></i> توفير رائعة</span>
+                </div>
+                <div class="discount-content">
+                    <h2 class="discount-title">وجبة كشرى مع اللحم المفروم</h2>
+                    
+                    <div class="price-container">
+                        <!-- Old Price with Cross Mark -->
+                        <div class="old-price-box">
+                            <span class="old-price-label">السعر السابق:</span>
+                            <span class="old-price-value">140 ج.م</span>
+                            <span class="cross-mark"><i class="fa-solid fa-xmark"></i></span>
+                        </div>
+                        <!-- New Price -->
+                        <div class="new-price-box">
+                            <span class="new-price-label">السعر الآن:</span>
+                            <span class="new-price-value">100 ج.م</span>
+                        </div>
+                    </div>
+
+                    <a href="https://wa.me/201100000000?text=أريد%20طلب%20خصم:%20وجبة%20كشرى%20مع%20اللحم%20المفروم" target="_blank" class="order-btn">
+                        <i class="fa-brands fa-whatsapp"></i> اطلب العرض الآن
+                    </a>
+                </div>
+            </div>
+
+            <!-- Card 4: وجبة كباب حله -->
+            <div class="discount-card">
+                <div class="discount-image-container">
+                    <img src="https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=800&q=80" alt="وجبة كباب حله" onerror="this.src='https://images.unsplash.com/photo-1529692236671-f1f6cf9683ba?auto=format&fit=crop&w=800&q=80'">
+                    <span class="discount-badge"><i class="fa-solid fa-crown"></i> الأكثر إقبالاً</span>
+                </div>
+                <div class="discount-content">
+                    <h2 class="discount-title">وجبة كباب حله</h2>
+                    
+                    <div class="price-container">
+                        <!-- Old Price with Cross Mark -->
+                        <div class="old-price-box">
+                            <span class="old-price-label">السعر السابق:</span>
+                            <span class="old-price-value">350 ج.م</span>
+                            <span class="cross-mark"><i class="fa-solid fa-xmark"></i></span>
+                        </div>
+                        <!-- New Price -->
+                        <div class="new-price-box">
+                            <span class="new-price-label">السعر الآن:</span>
+                            <span class="new-price-value">300 ج.م</span>
+                        </div>
+                    </div>
+
+                    <a href="https://wa.me/201100000000?text=أريد%20طلب%20خصم:%20وجبة%20كباب%20حله" target="_blank" class="order-btn">
+                        <i class="fa-brands fa-whatsapp"></i> اطلب العرض الآن
+                    </a>
+                </div>
+            </div>
+
+            <!-- Card 5: وجبة سجق مع كبده حاره -->
+            <div class="discount-card">
+                <div class="discount-image-container">
+                    <img src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=800&q=80" alt="وجبة سجق مع كبده حاره" onerror="this.src='https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=800&q=80'">
+                    <span class="discount-badge"><i class="fa-solid fa-pepper-hot"></i> إسكندراني حار</span>
+                </div>
+                <div class="discount-content">
+                    <h2 class="discount-title">وجبة سجق مع كبده حاره</h2>
+                    
+                    <div class="price-container">
+                        <!-- Old Price with Cross Mark -->
+                        <div class="old-price-box">
+                            <span class="old-price-label">السعر السابق:</span>
+                            <span class="old-price-value">270 ج.م</span>
+                            <span class="cross-mark"><i class="fa-solid fa-xmark"></i></span>
+                        </div>
+                        <!-- New Price -->
+                        <div class="new-price-box">
+                            <span class="new-price-label">السعر الآن:</span>
+                            <span class="new-price-value">240 ج.م</span>
+                        </div>
+                    </div>
+
+                    <a href="https://wa.me/201100000000?text=أريد%20طلب%20خصم:%20وجبة%20سجق%20مع%20كبده%20حاره" target="_blank" class="order-btn">
+                        <i class="fa-brands fa-whatsapp"></i> اطلب العرض الآن
+                    </a>
+                </div>
+            </div>
+
+            <!-- Card 6: كريب بالكبده الحاره -->
+            <div class="discount-card">
+                <div class="discount-image-container">
+                    <img src="https://images.unsplash.com/photo-1565299585323-38d6b0865b47?auto=format&fit=crop&w=800&q=80" alt="كريب بالكبده الحاره" onerror="this.src='https://images.unsplash.com/photo-1528735602780-2552fd46c7af?auto=format&fit=crop&w=800&q=80'">
+                    <span class="discount-badge"><i class="fa-solid fa-fire"></i> عرض الخمس نجوم</span>
+                </div>
+                <div class="discount-content">
+                    <h2 class="discount-title">كريب بالكبده الحاره</h2>
+                    
+                    <div class="price-container">
+                        <!-- Old Price with Cross Mark -->
+                        <div class="old-price-box">
+                            <span class="old-price-label">السعر السابق:</span>
+                            <span class="old-price-value">130 ج.م</span>
+                            <span class="cross-mark"><i class="fa-solid fa-xmark"></i></span>
+                        </div>
+                        <!-- New Price -->
+                        <div class="new-price-box">
+                            <span class="new-price-label">السعر الآن:</span>
+                            <span class="new-price-value">100 ج.م</span>
+                        </div>
+                    </div>
+
+                    <a href="https://wa.me/201100000000?text=أريد%20طلب%20خصم:%20كريب%20بالكبده%20الحاره" target="_blank" class="order-btn">
+                        <i class="fa-brands fa-whatsapp"></i> اطلب العرض الآن
+                    </a>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Bottom Return Button -->
+        <div class="bottom-actions">
+            <a href="index.html" class="btn-back">
+                <i class="fa-solid fa-house"></i> العودة للصفحة الرئيسية
+            </a>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>جميع الحقوق محفوظة &copy; 2026 - مطعم كبدة الاسكندراني</p>
+    </footer>
+
+    <!-- JavaScript for Theme Persistence via localStorage -->
+    <script>
+        // Load theme from localStorage (synced with index.html) or default to 'dark'
+        function initTheme() {
+            const savedTheme = localStorage.getItem('theme') || 'dark';
+            document.documentElement.setAttribute('data-theme', savedTheme);
+            updateThemeUI(savedTheme);
+        }
+
+        function toggleTheme() {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            
+            document.documentElement.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            updateThemeUI(newTheme);
+        }
+
+        function updateThemeUI(theme) {
+            const themeIcon = document.getElementById('themeIcon');
+            const themeText = document.getElementById('themeText');
+            
+            if (themeIcon && themeText) {
+                if (theme === 'light') {
+                    themeIcon.className = 'fa-solid fa-moon';
+                    themeText.textContent = 'الوضع الداكن';
+                } else {
+                    themeIcon.className = 'fa-solid fa-sun';
+                    themeText.textContent = 'الوضع المشرق';
+                }
+            }
+        }
+
+        // Initialize theme on page load
+        initTheme();
+    </script>
+</body>
+</html>

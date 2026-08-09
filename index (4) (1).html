@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مطعم كبدة الاسكندراني - الرئيسية</title>
+    <!-- Google Fonts: Cairo -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            /* Dark Theme (الوضع الداكن - الافتراضي) */
+            --bg-color: #121418;
+            --card-bg: #1c1f26;
+            --text-primary: #f3f4f6;
+            --text-secondary: #9ca3af;
+            --accent-color: #ff9800;
+            --accent-hover: #e68a00;
+            --accent-glow: rgba(255, 152, 0, 0.25);
+            --nav-bg: rgba(28, 31, 38, 0.95);
+            --border-color: #2e333d;
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            --map-filter: invert(90%) hue-rotate(180deg) contrast(1.1);
+        }
+
+        [data-theme="light"] {
+            /* Light Theme (الوضع المشرق) */
+            --bg-color: #f8fafc;
+            --card-bg: #ffffff;
+            --text-primary: #0f172a;
+            --text-secondary: #475569;
+            --accent-color: #ea580c;
+            --accent-hover: #c2410c;
+            --accent-glow: rgba(234, 88, 12, 0.15);
+            --nav-bg: rgba(255, 255, 255, 0.95);
+            --border-color: #e2e8f0;
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            --map-filter: none;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        body {
+            font-family: 'Cairo', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Header & Navbar Navigation */
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background-color: var(--nav-bg);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border-color);
+            box-shadow: var(--shadow);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: var(--accent-color);
+            text-decoration: none;
+        }
+
+        .logo i {
+            font-size: 1.8rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 0.75rem;
+            list-style: none;
+            flex-wrap: wrap;
+        }
+
+        .nav-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.65rem 1.25rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.95rem;
+            color: var(--text-primary);
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+        }
+
+        .nav-btn:hover, .nav-btn.active {
+            background-color: var(--accent-color);
+            color: #ffffff;
+            border-color: var(--accent-color);
+            box-shadow: 0 4px 15px var(--accent-glow);
+            transform: translateY(-2px);
+        }
+
+        /* Theme Toggle Button */
+        .theme-toggle-btn {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            color: var(--accent-color);
+            padding: 0.65rem 1.25rem;
+            border-radius: 50px;
+            cursor: pointer;
+            font-family: inherit;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            transition: all 0.3s ease;
+        }
+
+        .theme-toggle-btn:hover {
+            transform: scale(1.05);
+            border-color: var(--accent-color);
+            box-shadow: 0 4px 15px var(--accent-glow);
+        }
+
+        /* Main Container */
+        main {
+            flex: 1;
+        }
+
+        /* Hero Image & Banner */
+        .hero-section {
+            max-width: 1200px;
+            margin: 2rem auto 0;
+            padding: 0 1.5rem;
+        }
+
+        .hero-card {
+            background-color: var(--card-bg);
+            border-radius: 24px;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+            box-shadow: var(--shadow);
+        }
+
+        .hero-image-wrapper {
+            position: relative;
+            width: 100%;
+            height: 400px;
+            overflow: hidden;
+            background-color: #2a2e39;
+        }
+
+        .hero-image-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .hero-card:hover .hero-image-wrapper img {
+            transform: scale(1.03);
+        }
+
+        .hero-overlay-badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: var(--accent-color);
+            color: #ffffff;
+            padding: 0.5rem 1.25rem;
+            border-radius: 50px;
+            font-weight: 800;
+            font-size: 0.9rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+        }
+
+        .welcome-box {
+            padding: 2.5rem 2rem;
+            text-align: center;
+        }
+
+        .welcome-title {
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: var(--accent-color);
+            margin-bottom: 1rem;
+        }
+
+        .welcome-desc {
+            font-size: 1.25rem;
+            color: var(--text-primary);
+            max-width: 850px;
+            margin: 0 auto;
+            font-weight: 600;
+            line-height: 1.8;
+        }
+
+        /* Food Category Grid */
+        .menu-section {
+            max-width: 1200px;
+            margin: 3rem auto;
+            padding: 0 1.5rem;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 2.5rem;
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--text-primary);
+            display: inline-block;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 4px;
+            background-color: var(--accent-color);
+            border-radius: 2px;
+        }
+
+        .food-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .food-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: 1.75rem 1.25rem;
+            text-align: center;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .food-card:hover {
+            transform: translateY(-6px);
+            border-color: var(--accent-color);
+            box-shadow: 0 12px 25px var(--accent-glow);
+        }
+
+        .food-icon-box {
+            width: 75px;
+            height: 75px;
+            border-radius: 50%;
+            background: var(--accent-glow);
+            color: var(--accent-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.2rem;
+            border: 2px solid var(--accent-color);
+        }
+
+        .food-name {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        /* Contact & Location Section */
+        .info-section {
+            max-width: 1200px;
+            margin: 3rem auto;
+            padding: 0 1.5rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+        }
+
+        .info-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: var(--shadow);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            gap: 1.5rem;
+        }
+
+        .info-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .info-header i {
+            font-size: 2.2rem;
+            color: var(--accent-color);
+        }
+
+        .info-header h3 {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .whatsapp-card .info-header i {
+            color: #25D366;
+        }
+
+        .info-body {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
+        .whatsapp-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+            background-color: #25D366;
+            color: #ffffff;
+            padding: 1rem 1.5rem;
+            border-radius: 14px;
+            text-decoration: none;
+            font-weight: 800;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
+            text-align: center;
+        }
+
+        .whatsapp-btn:hover {
+            background-color: #1ebc57;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(37, 211, 102, 0.4);
+        }
+
+        .map-wrapper {
+            width: 100%;
+            height: 200px;
+            border-radius: 14px;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+        }
+
+        .map-wrapper iframe {
+            width: 100%;
+            height: 100%;
+            border: 0;
+            filter: var(--map-filter);
+        }
+
+        .map-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.6rem;
+            background-color: var(--accent-color);
+            color: #ffffff;
+            padding: 0.85rem 1.5rem;
+            border-radius: 14px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .map-btn:hover {
+            background-color: var(--accent-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 18px var(--accent-glow);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--card-bg);
+            border-top: 1px solid var(--border-color);
+            padding: 2rem 1.5rem;
+            text-align: center;
+            color: var(--text-secondary);
+            margin-top: 3rem;
+        }
+
+        footer p {
+            font-size: 0.95rem;
+            font-weight: 600;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+            .nav-links {
+                justify-content: center;
+                width: 100%;
+            }
+            .hero-image-wrapper {
+                height: 260px;
+            }
+            .welcome-title {
+                font-size: 1.7rem;
+            }
+            .welcome-desc {
+                font-size: 1.1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header & Navigation -->
+    <header>
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <i class="fa-solid fa-utensils"></i>
+                <span>كبدة الاسكندراني</span>
+            </a>
+
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="index.html" class="nav-btn active"><i class="fa-solid fa-house"></i> الرئيسية</a></li>
+                    <li><a href="offers.html" class="nav-btn"><i class="fa-solid fa-fire"></i> العروض الرائجة</a></li>
+                    <li><a href="discounts.html" class="nav-btn"><i class="fa-solid fa-tags"></i> الخصومات</a></li>
+                    <li><a href="bestsellers.html" class="nav-btn"><i class="fa-solid fa-crown"></i> الأكثر مبيعاً</a></li>
+                </ul>
+            </nav>
+
+            <!-- Theme Toggle Button -->
+            <button class="theme-toggle-btn" id="themeToggleBtn" onclick="toggleTheme()" aria-label="تبديل الوضعية">
+                <i class="fa-solid fa-sun" id="themeIcon"></i>
+                <span id="themeText">الوضع المشرق</span>
+            </button>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section with Restaurant Image -->
+        <section class="hero-section">
+            <div class="hero-card">
+                <div class="hero-image-wrapper">
+                    <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=1200&q=80" alt="صورة مطعم كبدة الاسكندراني" onerror="this.src='https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=1200&q=80'">
+                    <span class="hero-overlay-badge"><i class="fa-solid fa-star"></i> طعم إسكندراني أصيل</span>
+                </div>
+                <div class="welcome-box">
+                    <h1 class="welcome-title">أهلاً بك في مطعم "كبدة الاسكندراني"</h1>
+                    <p class="welcome-desc">
+                        هنا ستجد أشهى المأكولات من جميع أنواع اللحوم المحضرة بأعلى جودة وأقوى التوابل الإسكندرانية الأصلية!
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Menu / Categories Section -->
+        <section class="menu-section">
+            <div class="section-header">
+                <h2 class="section-title">قائمة المأكولات المميزة</h2>
+            </div>
+
+            <div class="food-grid">
+                <!-- Item 1: شاورما -->
+                <div class="food-card">
+                    <div class="food-icon-box">
+                        <i class="fa-solid fa-drumstick-bite"></i>
+                    </div>
+                    <h3 class="food-name">شاورما</h3>
+                </div>
+
+                <!-- Item 2: كبدة اسكندراني -->
+                <div class="food-card">
+                    <div class="food-icon-box">
+                        <i class="fa-solid fa-pepper-hot"></i>
+                    </div>
+                    <h3 class="food-name">كبدة اسكندراني</h3>
+                </div>
+
+                <!-- Item 3: سجق -->
+                <div class="food-card">
+                    <div class="food-icon-box">
+                        <i class="fa-solid fa-bacon"></i>
+                    </div>
+                    <h3 class="food-name">سجق</h3>
+                </div>
+
+                <!-- Item 4: حواوشي -->
+                <div class="food-card">
+                    <div class="food-icon-box">
+                        <i class="fa-solid fa-bread-slice"></i>
+                    </div>
+                    <h3 class="food-name">حواوشي</h3>
+                </div>
+
+                <!-- Item 5: بيتزا -->
+                <div class="food-card">
+                    <div class="food-icon-box">
+                        <i class="fa-solid fa-pizza-slice"></i>
+                    </div>
+                    <h3 class="food-name">بيتزا</h3>
+                </div>
+
+                <!-- Item 6: فراخ مشوية -->
+                <div class="food-card">
+                    <div class="food-icon-box">
+                        <i class="fa-solid fa-fire-burner"></i>
+                    </div>
+                    <h3 class="food-name">فراخ مشوية</h3>
+                </div>
+
+                <!-- Item 7: فراخ بانيه -->
+                <div class="food-card">
+                    <div class="food-icon-box">
+                        <i class="fa-solid fa-burger"></i>
+                    </div>
+                    <h3 class="food-name">فراخ بانيه</h3>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact & Branch Info Section -->
+        <section class="info-section">
+            <!-- WhatsApp Contact Card -->
+            <div class="info-card whatsapp-card">
+                <div>
+                    <div class="info-header">
+                        <i class="fa-brands fa-whatsapp"></i>
+                        <h3>التواصل السريع</h3>
+                    </div>
+                    <div class="info-body" style="margin-top: 1rem;">
+                        <p>للطالبات والاستفسارات يرجى التواصل معنا عبر الواتساب:</p>
+                        <p style="font-weight: 800; font-size: 1.3rem; color: var(--text-primary); margin-top: 0.5rem; direction: ltr; text-align: right;">
+                            011********
+                        </p>
+                    </div>
+                </div>
+                <a href="https://wa.me/201100000000" target="_blank" class="whatsapp-btn">
+                    <i class="fa-brands fa-whatsapp"></i> تواصل عبر الواتساب
+                </a>
+            </div>
+
+            <!-- Branch Location Card -->
+            <div class="info-card">
+                <div>
+                    <div class="info-header">
+                        <i class="fa-solid fa-location-dot"></i>
+                        <h3>فروعنا</h3>
+                    </div>
+                    <div class="info-body" style="margin-top: 1rem;">
+                        <p><strong>العنوان:</strong> حي بولاق أمام مدرسة الإمام الشافعي بمحافظة القاهرة</p>
+                    </div>
+                    <div class="map-wrapper" style="margin-top: 1rem;">
+                        <!-- Embed Google Maps View -->
+                        <iframe 
+                            src="https://maps.google.com/maps?q=30.0444,31.2357&z=15&output=embed" 
+                            allowfullscreen="" 
+                            loading="lazy" 
+                            title="خريطة الفرع">
+                        </iframe>
+                    </div>
+                </div>
+                <a href="https://maps.google.com/?q=مدرسة+الامام+الشافعي+بولاق+القاهرة" target="_blank" class="map-btn">
+                    <i class="fa-solid fa-map-location-dot"></i> عرض موقعنا على الخريطة
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>جميع الحقوق محفوظة &copy; 2026 - مطعم كبدة الاسكندراني</p>
+    </footer>
+
+    <!-- JavaScript for Theme Persistence via localStorage -->
+    <script>
+        function initTheme() {
+            const savedTheme = localStorage.getItem('theme') || 'dark';
+            document.documentElement.setAttribute('data-theme', savedTheme);
+            updateThemeUI(savedTheme);
+        }
+
+        function toggleTheme() {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            
+            document.documentElement.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            updateThemeUI(newTheme);
+        }
+
+        function updateThemeUI(theme) {
+            const themeIcon = document.getElementById('themeIcon');
+            const themeText = document.getElementById('themeText');
+            
+            if (themeIcon && themeText) {
+                if (theme === 'light') {
+                    themeIcon.className = 'fa-solid fa-moon';
+                    themeText.textContent = 'الوضع الداكن';
+                } else {
+                    themeIcon.className = 'fa-solid fa-sun';
+                    themeText.textContent = 'الوضع المشرق';
+                }
+            }
+        }
+
+        initTheme();
+    </script>
+</body>
+</html>
